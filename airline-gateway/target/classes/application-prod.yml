@@ -1,0 +1,36 @@
+server:
+  port: 5000
+
+spring:
+  application:
+    name: airline-gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: airline-api
+              uri: ${BACKEND_URL:http://airline-api-env.eba-daigpjim.eu-north-1.elasticbeanstalk.com}
+              predicates:
+                - Path=/api/v1/**
+              filters:
+                - name: RateLimitFilter
+                  args:
+                    limit: 3
+
+            - id: airline-swagger-ui
+              uri: ${BACKEND_URL:http://airline-api-env.eba-daigpjim.eu-north-1.elasticbeanstalk.com}
+              predicates:
+                - Path=/swagger-ui/**,/swagger-ui.html
+
+            - id: airline-api-docs
+              uri: ${BACKEND_URL:http://airline-api-env.eba-daigpjim.eu-north-1.elasticbeanstalk.com}
+              predicates:
+                - Path=/api-docs/**,/v3/api-docs/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

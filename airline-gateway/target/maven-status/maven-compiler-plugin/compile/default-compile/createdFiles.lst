@@ -1,0 +1,3 @@
+com\ayfernaz\gateway\filter\RateLimitFilter$Config.class
+com\ayfernaz\gateway\filter\RateLimitFilter.class
+com\ayfernaz\gateway\AirlineGatewayApplication.class

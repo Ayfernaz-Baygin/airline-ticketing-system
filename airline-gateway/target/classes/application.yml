@@ -1,0 +1,36 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: airline-gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: airline-api
+              uri: http://localhost:8080
+              predicates:
+                - Path=/api/v1/**
+              filters:
+                - name: RateLimitFilter
+                  args:
+                    limit: 3
+
+            - id: airline-swagger-ui
+              uri: http://localhost:8080
+              predicates:
+                - Path=/swagger-ui/**,/swagger-ui.html
+
+            - id: airline-api-docs
+              uri: http://localhost:8080
+              predicates:
+                - Path=/api-docs/**,/v3/api-docs/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
