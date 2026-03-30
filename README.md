@@ -1,4 +1,4 @@
-# ✈️ Airline Ticketing System API
+#  Airline Ticketing System API
 
 **Course:** SE 4458 – Software Architecture & Design of Modern Large Scale Systems
 **Student:** Ayfernaz Baygın
@@ -6,7 +6,7 @@
 
 ---
 
-## 🚀 Project Overview
+##  Project Overview
 
 This project is a Spring Boot–based REST API developed for an airline ticketing system. The system supports:
 
@@ -28,7 +28,7 @@ Key features:
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 * Java 21
 * Spring Boot
@@ -44,22 +44,22 @@ Key features:
 
 ---
 
-## 🌐 System Architecture
+##  System Architecture
 
 The system consists of two main services:
 
-### 1️⃣ Backend Airline API
+### 1️ Backend Airline API
 
 * Handles all business logic
 * Runs on port 8080
 
-### 2️⃣ API Gateway
+### 2️ API Gateway
 
 * Routes all external requests
 * Applies rate limiting
 * Runs on port 8081
 
-### 🔁 Request Flow
+###  Request Flow
 
 Client → API Gateway → Backend API
 
@@ -67,7 +67,7 @@ This architecture ensures centralized control and scalability.
 
 ---
 
-## 🧩 Data Model
+##  Data Model
 
 The system is based on a **Flight–Ticket relationship**:
 
@@ -85,32 +85,32 @@ Supported operations:
 
 ---
 
-## 🔐 Authentication (JWT)
+##  Authentication (JWT)
 
 Authentication is implemented using JSON Web Tokens.
 
-### 🔹 Login Endpoint
+###  Login Endpoint
 
 POST /api/v1/auth/login
 
-### 🔹 Demo Credentials
+###  Demo Credentials
 
 username: admin
 password: 1234
 
-### 🔹 Usage
+###  Usage
 
 Authorization header:
 Authorization: Bearer <token>
 
-### 🔹 Behavior
+###  Behavior
 
 * Without token → 403 Forbidden
 * With token → 200 OK
 
 ---
 
-## 🔌 API Endpoints
+##  API Endpoints
 
 ### Add Flight
 
@@ -150,7 +150,7 @@ GET /api/v1/flights/{flightNumber}/passengers
 
 ---
 
-## 📊 Authentication & Pagination Compliance
+##  Authentication & Pagination Compliance
 
 | API                | Authentication | Pagination |
 | ------------------ | -------------- | ---------- |
@@ -163,21 +163,21 @@ GET /api/v1/flights/{flightNumber}/passengers
 
 ---
 
-## 📘 Swagger Documentation
+##  Swagger Documentation
 
 Swagger UI is integrated for API documentation and testing.
 
-### 🔗 Swagger UI
+###  Swagger UI
 
 http://airline-api-env.eba-daigpjim.eu-north-1.elasticbeanstalk.com/swagger-ui/index.html
 
-### 🔗 API Docs
+###  API Docs
 
 http://airline-api-env.eba-daigpjim.eu-north-1.elasticbeanstalk.com/api-docs
 
 ---
 
-## 🌐 API Gateway
+##  API Gateway
 
 All requests are routed through the API Gateway.
 
@@ -187,32 +187,32 @@ All requests are routed through the API Gateway.
 * Centralized entry point
 * Rate limiting enforcement
 
-### 🔗 Gateway Base URL
+### Gateway Base URL
 
 http://airline-gateway-env.eba-by68ht3y.eu-north-1.elasticbeanstalk.com
 
 ---
 
-## ⛔ Rate Limiting
+##  Rate Limiting
 
 Rate limiting is implemented at the API Gateway level using request-based throttling. Each client is allowed a limited number of requests within a defined time window. When the limit is exceeded, the system responds with HTTP 429 (Too Many Requests).
 
-### 🔹 Behavior
+###  Behavior
 
 * First 3 requests → 200 OK
 * 4th request → 429 Too Many Requests
-
-### 🔹 Endpoint
+* 
+###  Endpoint
 
 GET /api/v1/flights/search
 
 ---
 
-## 🧪 Load Testing
+## Load Testing
 
 Load testing was conducted using **k6**.
 
-### 🔹 Scenarios
+### Scenarios
 
 * 20 users / 30 sec
 * 50 users / 30 sec
@@ -220,38 +220,38 @@ Load testing was conducted using **k6**.
 
 
 
-## 🌐 Deployment Links
+## Deployment Links
 The system is deployed on AWS Elastic Beanstalk and publicly accessible via the links below.
 
-### 🔹 Backend Base URL
+###  Backend Base URL
 
 http://airline-api-env.eba-daigpjim.eu-north-1.elasticbeanstalk.com
 
-### 🔹 Swagger UI
+### Swagger UI
 
 http://airline-api-env.eba-daigpjim.eu-north-1.elasticbeanstalk.com/swagger-ui/index.html
 
-### 🔹 API Documentation
+###  API Documentation
 
 http://airline-api-env.eba-daigpjim.eu-north-1.elasticbeanstalk.com/api-docs
 
 ---
 
-### 🔹 API Gateway Base URL
+### API Gateway Base URL
 
 http://airline-gateway-env.eba-by68ht3y.eu-north-1.elasticbeanstalk.com
 
-### 🔹 Gateway Health Check
+###  Gateway Health Check
 
 http://airline-gateway-env.eba-by68ht3y.eu-north-1.elasticbeanstalk.com/health
 
 ---
 
-### 🔹 Flight Search (Backend)
+###  Flight Search (Backend)
 
 http://airline-api-env.eba-daigpjim.eu-north-1.elasticbeanstalk.com/api/v1/flights/search?airportFrom=IST&airportTo=ANK&numberOfPeople=1&page=0
 
-### 🔹 Flight Search (Gateway - Rate Limited)
+###  Flight Search (Gateway - Rate Limited)
 
 http://airline-gateway-env.eba-by68ht3y.eu-north-1.elasticbeanstalk.com/api/v1/flights/search?airportFrom=IST&airportTo=ANK&numberOfPeople=1&page=0
 
@@ -259,13 +259,13 @@ http://airline-gateway-env.eba-by68ht3y.eu-north-1.elasticbeanstalk.com/api/v1/f
 
 
 
-### 🔹 Notes
+###  Notes
 
 Rate limiting was disabled during testing to measure raw performance.
 
 ---
 
-# 📈 Load Test Analysis
+#  Load Test Analysis
 
 Load testing was conducted under three different scenarios: 20, 50, and 100 virtual users (VUs), each executed for 30 seconds.
 
@@ -279,7 +279,7 @@ Overall, the results confirm that the system scales effectively and maintains st
 
 ---
 
-## ⚙️ Assumptions
+## Assumptions
 
 * Flights with no seats are excluded from search
 * Both one-way and round-trip supported
@@ -291,7 +291,7 @@ Overall, the results confirm that the system scales effectively and maintains st
 
 ---
 
-## 🔮 Future Improvements
+## Future Improvements
 
 * Use production-grade database
 * Distributed rate limiting
@@ -300,8 +300,10 @@ Overall, the results confirm that the system scales effectively and maintains st
 * Advanced gateway rules
 
 ---
+PROJECT DEMO VIDEO
+https://youtu.be/D4pNQ9uCFL0
 
-## 📌 Conclusion
+##  Conclusion
 
 This project successfully implements a scalable airline ticketing system using modern software architecture principles.
 
@@ -316,7 +318,7 @@ It includes:
 All functional and technical requirements of the assignment have been satisfied.
 The system also demonstrates microservice architecture principles with API Gateway integration.
 
-## 📄 Project Report
+##  Project Report
 
 You can access the detailed project report here:
 
